@@ -1,0 +1,9 @@
+{
+    "title": "$:/plugins/iilyak/splitweb",
+    "name": "splitweb",
+    "description": "Read-only sync adapter to host static web site",
+    "list": "readme license",
+    "version": "5.1.22-prerelease",
+    "plugin-type": "plugin",
+    "dependents": ""
+}

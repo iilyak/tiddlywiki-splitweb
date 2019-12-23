@@ -1,0 +1,32 @@
+[
+    {
+        "title": "bar",
+        "created": "20191128223719980",
+        "modified": "20191128223730628",
+        "tags": [
+            "css",
+            "example"
+        ],
+        "type": "text/vnd.tiddlywiki",
+        "fields": {
+            "author": "@iilyak"
+        },
+        "text": "This is the testing tiddler bar.\n",
+        "filepath": "tiddlers/bar.tid"
+    },
+    {
+        "title": "foo",
+        "created": "20191128223719980",
+        "modified": "20191128223730628",
+        "tags": [
+            "www",
+            "example"
+        ],
+        "type": "text/vnd.tiddlywiki",
+        "fields": {
+            "date": "2019-12-17"
+        },
+        "text": "This is the testing tiddler foo.\n",
+        "filepath": "tiddlers/foo.tid"
+    }
+]
