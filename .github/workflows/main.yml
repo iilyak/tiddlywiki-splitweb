@@ -1,0 +1,17 @@
+name: CI
+
+on: [merge]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: checkout tiddlywiki
+      run: git clone https://github.com/Jermolene/TiddlyWiki5 tiddlywiki
+    - name: build demo
+      run: TIDDLYWIKI_PATH=`pwd`/tiddlywiki make deploy
+    - name: deploy
+      run: cd site && git push origin gh-pages
