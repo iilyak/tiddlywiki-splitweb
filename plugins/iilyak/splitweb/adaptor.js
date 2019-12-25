@@ -22,7 +22,7 @@ Due to this I need to implement additional storage
 /*global $tw: false */
 "use strict";
 
-var CONFIG_HOST_TIDDLER = "$:/config/tiddlyweb/host",
+var CONFIG_HOST_TIDDLER = "$:/config/splitweb/host",
 	DEFAULT_HOST_TIDDLER = "$protocol$//$host$/";
 
 function SplitWebAdaptor(options) {
@@ -51,7 +51,7 @@ SplitWebAdaptor.prototype.getHost = function() {
 	for(var t=0; t<substitutions.length; t++) {
 		var s = substitutions[t];
 		text = $tw.utils.replaceString(text,new RegExp("\\$" + s.name + "\\$","mg"),s.value);
-	}	
+	}
 	return text;
 };
 
