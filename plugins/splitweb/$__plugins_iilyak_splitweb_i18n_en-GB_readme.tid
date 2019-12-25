@@ -23,5 +23,5 @@ caddy file-server
 
 ! Hosting on github pages
 
-By dafault github uses jerkill preprocessing on gh-pages. You have to disable it by creating empty `.nojekyll` file at the root of the web site.
+By default github uses jerkill preprocessing on gh-pages. You have to disable it by creating empty `.nojekyll` file at the root of the web site.
 Otherwise the files which name starts with `_` (which is `/` in tiddler name) wouldn't be displayed.
