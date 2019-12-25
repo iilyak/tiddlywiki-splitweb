@@ -35,3 +35,7 @@ make deploy
 cd site
 git push origin gh-pages
 ```
+
+# Github Actions
+
+TODO

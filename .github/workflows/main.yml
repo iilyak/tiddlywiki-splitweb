@@ -1,6 +1,8 @@
 name: CI
 
-on: [merge]
+on:
+  pull_request:
+    types: [closed]
 
 jobs:
   build:
@@ -10,8 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: checkout tiddlywiki
+      if: github.event.pull_request.merged == true
       run: git clone https://github.com/Jermolene/TiddlyWiki5 tiddlywiki
     - name: build demo
+      if: github.event.pull_request.merged == true
       run: TIDDLYWIKI_PATH=`pwd`/tiddlywiki make deploy
-    - name: deploy
+    - name: deploy demo
+      if: github.event.pull_request.merged == true
       run: cd site && git push origin gh-pages
