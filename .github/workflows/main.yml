@@ -30,7 +30,7 @@ jobs:
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
       run: |
-          git pull github gh-pages --ff-only
+          git worktree add --track -b gh-pages site github/gh-pages
           make deploy
           cd site
           git push github gh-pages
