@@ -14,6 +14,11 @@ jobs:
     - name: checkout tiddlywiki
       if: github.event.pull_request.merged == true
       run: git clone https://github.com/Jermolene/TiddlyWiki5 tiddlywiki
+    - name: prepare environment
+      if: github.event.pull_request.merged == true
+      run: |
+          git config user.email "iilyak@apache.org"
+          git config user.name "iilyak CI"
     - name: build demo
       if: github.event.pull_request.merged == true
       run: TIDDLYWIKI_PATH=`pwd`/tiddlywiki make deploy
