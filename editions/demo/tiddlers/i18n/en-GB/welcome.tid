@@ -1,6 +1,6 @@
 created: 20191128223719980
 modified: 20191128223730628
-title: welcome
+title: /site/i18n/en-GB/welcome
 type: text/vnd.tiddlywiki
 author: @iilyak
 
@@ -20,4 +20,4 @@ The exact mechanism is as follows:
 ! Known limitations of the splitweb plugin
 
 * Currently it is not yet possible to specify a split filter. Which means only regular tiddlers created by user are stored in tiddlers.json. Which means plugins need to be included in index.html
-* The creation of a site helpers (Makefile) tested only under linux. Documentation for Windows users need to be written.
+* The creation of a site helpers (Makefile) tested only under Linux. Documentation for Windows users need to be written.
