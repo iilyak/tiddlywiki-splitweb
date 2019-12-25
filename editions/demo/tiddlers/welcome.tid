@@ -1,0 +1,23 @@
+created: 20191128223719980
+modified: 20191128223730628
+title: welcome
+type: text/vnd.tiddlywiki
+author: @iilyak
+
+{{$:/plugins/iilyak/splitweb/readme}}
+
+! About this demo
+
+This demo contains two tiddlers [[foo]] and [[bar]] both are stored remotely and retrieved on demand.
+The exact mechanism is as follows:
+
+* index.html contains all tiddlywiki related code including plugins and splitweb sync adapter.
+* The [[$:/config/splitweb/host]] tiddler contains the prefix to construct URI to tiddlers.json.
+* The tiddlers.json contains list of tiddlers available for this wiki. The information about the tiddler called skinny tiddler. It includes all information about tiddler except its text field.
+* When user accesses the tiddler the text of the tiddler is loaded from remote web server. 
+* The directory structure of remote server is similar to the structure of nodejs based tiddlywiki. The only exception is the presence of tiddlers.json file in the root of the directory
+
+! Known limitations of the splitweb plugin
+
+* Currently it is not yet possible to specify a split filter. Which means only regular tiddlers created by user are stored in tiddlers.json. Which means plugins need to be included in index.html
+* The creation of a site helpers (Makefile) tested only under linux. Documentation for Windows users need to be written.
