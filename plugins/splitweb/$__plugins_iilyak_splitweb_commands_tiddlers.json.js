@@ -62,7 +62,7 @@ Command.prototype.log = function(str) {
 };
 
 /*
-Convert a tiddler to a field set suitable for PUTting to TiddlyWeb
+Convert a tiddler to a field set suitable for PUTting to TiddlyWeb and SplitWeb
 */
 Command.prototype.convertTiddlerToTiddlyWebFormat = function(filepath,tiddler) {
     var filepath = this.fileInfo(".", tiddler).filepath;
@@ -91,6 +91,7 @@ Command.prototype.convertTiddlerToTiddlyWebFormat = function(filepath,tiddler) {
 	// Default the content type
 	result.type = result.type || "text/vnd.tiddlywiki";
 	result.filepath = filepath;
+	delete result.text;
 	return result;
 };
 
