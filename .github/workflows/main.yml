@@ -20,6 +20,7 @@ jobs:
           git config user.email "iilyak@apache.org"
           git config user.name "${GITHUB_ACTOR}"
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git fetch github gh-pages
     - name: build demo1
       if: github.event.pull_request.merged == true
       env:
