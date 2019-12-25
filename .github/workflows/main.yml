@@ -19,7 +19,8 @@ jobs:
       run: |
           git config user.email "iilyak@apache.org"
           git config user.name "${GITHUB_ACTOR}"
-    - name: build demo
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+    - name: build demo1
       if: github.event.pull_request.merged == true
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
@@ -29,6 +30,7 @@ jobs:
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
       run: |
+          git pull github gh-pages --ff-only
           make deploy
           cd site
-          git push origin gh-pages
+          git push github gh-pages
