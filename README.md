@@ -6,7 +6,8 @@ tiddlywiki from a generic web server.
 
 # Demo
 
-You can see a [demo here](https://iilyak.github.io/tiddlywiki-splitweb/)
+* You can see a [demo here](https://iilyak.github.io/tiddlywiki-splitweb/)
+* Direct [link to plugin](https://iilyak.github.io/tiddlywiki-splitweb/#%24%3A%2Fplugins%2Fiilyak%2Fsplitweb)
 
 # How to build
 
