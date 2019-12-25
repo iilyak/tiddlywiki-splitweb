@@ -14,8 +14,8 @@ The exact mechanism is as follows:
 * index.html contains all tiddlywiki related code including plugins and splitweb sync adapter.
 * The [[$:/config/splitweb/host]] tiddler contains the prefix to construct URI to tiddlers.json.
 * The tiddlers.json contains list of tiddlers available for this wiki. The information about the tiddler called skinny tiddler. It includes all information about tiddler except its text field.
-* When user accesses the tiddler the text of the tiddler is loaded from remote web server. 
-* The directory structure of remote server is similar to the structure of nodejs based tiddlywiki. The only exception is the presence of tiddlers.json file in the root of the directory
+* When user accesses the tiddler the text of the tiddler is loaded from remote web server.
+* The directory structure of remote server is similar to the structure of nodejs based tiddlywiki. The only exception is the presence of tiddlers.json file in the root of the directory.
 
 ! Known limitations of the splitweb plugin
 
