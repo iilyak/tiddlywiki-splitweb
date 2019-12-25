@@ -18,12 +18,16 @@ jobs:
       if: github.event.pull_request.merged == true
       run: |
           git config user.email "iilyak@apache.org"
-          git config user.name "$GITHUB_ACTOR"
+          git config user.name "${GITHUB_ACTOR}"
     - name: build demo
       if: github.event.pull_request.merged == true
+      env:
+          TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
       run: TIDDLYWIKI_PATH=`pwd`/tiddlywiki make build
     - name: deploy demo
       if: github.event.pull_request.merged == true
+      env:
+          TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
       run: |
           make deploy
           cd site
