@@ -19,3 +19,18 @@ make build
 cd output/demo 
 caddy file-server
 ```
+
+# Hosting on github pages
+
+By dafault github uses jerkill preprocessing on gh-pages. You have to disable it by creating empty `.nojekyll` file at the root of the web site.
+Otherwise the files which name starts with `_` (which is `/` in tiddler name) wouldn't be displayed.
+
+## Deploying to github pages
+
+```
+make clean
+TIDDLYWIKI_PATH=~/dev/tiddlywiki # update the path to point to correct location
+make deploy
+cd site
+git push origin gh-pages
+```
