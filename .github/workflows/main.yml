@@ -17,8 +17,8 @@ jobs:
     - name: prepare environment
       if: github.event.pull_request.merged == true
       run: |
-          git config user.email "iilyak@apache.org"
-          git config user.name "${GITHUB_ACTOR}"
+          git config user.email `git show -s --format='%ae' HEAD^2`
+          git config user.name `git show -s --format='%an' HEAD^2`
           git remote add github "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git fetch github gh-pages
     - name: build demo1
