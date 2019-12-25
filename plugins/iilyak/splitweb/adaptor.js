@@ -22,7 +22,7 @@ Due to this I need to implement additional storage
 /*global $tw: false */
 "use strict";
 
-var CONFIG_HOST_TIDDLER = "$:/config/tiddlyweb/host",
+var CONFIG_HOST_TIDDLER = "$:/config/splitweb/host",
 	DEFAULT_HOST_TIDDLER = "$protocol$//$host$/";
 
 function SplitWebAdaptor(options) {
