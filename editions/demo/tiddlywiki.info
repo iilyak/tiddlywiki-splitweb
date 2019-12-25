@@ -17,7 +17,6 @@
             "--tiddlers.json", "output/demo",
             "--render", "$:/core/save/all",
                 "demo/index.html", "text/plain"
-            
         ]
     },
     "languages": [
