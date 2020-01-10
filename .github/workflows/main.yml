@@ -19,9 +19,16 @@ jobs:
       run: |
           git config user.email `git show -s --format='%ae' HEAD^2`
           git config user.name `git show -s --format='%an' HEAD^2`
-          git remote add github "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git remote add github "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
           git fetch github gh-pages
-    - name: build demo1
+    - name: prepare commit message
+      if: github.event.pull_request.merged == true
+      run: |
+          echo "Update `date --iso-8601=minutes`" > commit_message
+          echo "" >> commit_message
+          echo "from: [${GITHUB_SHA}](github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA})" >> commit_message
+          git log --oneline --format=" * %h : %s" $(git merge-base --fork-point master)... >> commit_message
+    - name: build demo
       if: github.event.pull_request.merged == true
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
@@ -32,6 +39,10 @@ jobs:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
       run: |
           git worktree add --track -b gh-pages site github/gh-pages
-          make deploy
+          make build
+          cp -r output/demo/* site/
+          rm -rf site/plugins/
           cd site
+          git add -A .
+          git commit --file=../commit_message
           git push github gh-pages

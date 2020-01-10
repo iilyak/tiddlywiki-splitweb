@@ -20,13 +20,6 @@ build: check-env
 clean:
 	@rm -rf output
 
-.PHONY: deploy
-deploy: build site
-	@cp -r output/demo/* site/
-	@rm -rf output/demo/plugins/
-	@cd site && git add -A .
-	@cd site && git commit -m "Update `date --iso-8601=minutes`" -m "from: $(COMMIT_LINK)"
-
 .PHONY: check-env
 check-env:  __CHECK_ENV=1
 check-env:
