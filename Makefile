@@ -4,21 +4,34 @@ export GITHUB_HOST ?= github.com
 export GITHUB_SHA ?= $(shell git rev-parse HEAD)
 REGEXP := "s|.*$$GITHUB_HOST[:/]\([^/]*/[^/]*\).*.git$$|\1|"
 export GITHUB_REPOSITORY ?= $(shell git remote get-url origin | sed -e $(REGEXP))
-COMMIT_LINK := "[$(GITHUB_SHA)]\(https://$(GITHUB_HOST)/$(GITHUB_REPOSITORY)/commit/$(GITHUB_SHA)\)"
 
 all: build
 
+.PHONY: help
+# target: help - Prints this help
+help:
+	@egrep "^# target:" Makefile | sed -e 's/^# target: //g' | sort
+
+.PHONY: serve
+# target: serve - start nodejs edition to simplify updates
 serve: build check-env
 	@node $(TW_TOOL) editions/server --listen
 
 .PHONY: build
+# target: build - compile site content
 build: check-env
 	@node $(TW_TOOL) editions/demo --verbose \
 		--output `pwd`/output --build splitweb
 
 .PHONY: clean
+# target: clean - cleanup build artifacts
 clean:
 	@rm -rf output
+
+.PHONY: caddy
+# target: caddy - compile site content and start web server
+caddy: build
+	@cd output/demo && caddy file-server
 
 .PHONY: check-env
 check-env:  __CHECK_ENV=1
