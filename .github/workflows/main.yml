@@ -16,11 +16,17 @@ jobs:
       run: git clone https://github.com/Jermolene/TiddlyWiki5 tiddlywiki
     - name: prepare environment
       if: github.event.pull_request.merged == true
+      env:
+          SSH_DIR=.ssh
       run: |
           git config user.email `git show -s --format='%ae' HEAD^2`
           git config user.name `git show -s --format='%an' HEAD^2`
-          git remote add github "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
           git fetch github gh-pages
+          mkdir "${SSH_DIR}"
+          ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
+          echo "${ACTIONS_DEPLOY_KEY}" > "${SSH_DIR}/id_rsa"
+          chmod 400 "${SSH_DIR}/id_rsa"
     - name: prepare commit message
       if: github.event.pull_request.merged == true
       run: |
@@ -37,6 +43,7 @@ jobs:
       if: github.event.pull_request.merged == true
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
+          GIT_SSH_COMMAND: ssh -i .ssh/id_rsa
       run: |
           git worktree add --track -b gh-pages site github/gh-pages
           make build
@@ -46,3 +53,4 @@ jobs:
           git add -A .
           git commit --file=../commit_message
           git push github gh-pages
+          rm -rf .ssh
