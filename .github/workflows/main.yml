@@ -17,7 +17,7 @@ jobs:
     - name: prepare environment
       if: github.event.pull_request.merged == true
       env:
-          SSH_DIR=.ssh
+          SSH_DIR: .ssh
       run: |
           git config user.email `git show -s --format='%ae' HEAD^2`
           git config user.name `git show -s --format='%an' HEAD^2`
