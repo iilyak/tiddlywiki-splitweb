@@ -47,7 +47,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE." />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>My TiddlyWiki — a non-linear personal web notebook</title>
+<title>tiddlywiki-splitweb plugin — a non-linear personal web notebook</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~-->
 
 <!--~~ Raw markup ~~-->
@@ -160,6 +160,8 @@ Error message and password prompt
 <li>$:/languages/ru-RU</li>
 
 <li>$:/plugins/iilyak/splitweb</li>
+
+<li>$:/SiteTitle</li>
 
 <li>$:/status/RequireReloadDueToPluginChange</li>
 
@@ -7625,7 +7627,7 @@ The exact mechanism is as follows:
         },
         &quot;$:/core/ui/EditorToolbar/stamp-dropdown&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/EditorToolbar/stamp-dropdown&quot;,
-            &quot;text&quot;: &quot;\\define toolbar-button-stamp-inner()\n&lt;$button tag=\&quot;a\&quot;&gt;\n\n&lt;$list filter=\&quot;[[$(snippetTitle)$]addsuffix[/prefix]is[missing]removesuffix[/prefix]addsuffix[/suffix]is[missing]]\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;replace-selection\&quot;\n\ttext={{$(snippetTitle)$}}\n/&gt;\n\n&lt;/$list&gt;\n\n\n&lt;$list filter=\&quot;[[$(snippetTitle)$]addsuffix[/prefix]is[missing]removesuffix[/prefix]addsuffix[/suffix]!is[missing]] [[$(snippetTitle)$]addsuffix[/prefix]!is[missing]removesuffix[/prefix]addsuffix[/suffix]is[missing]] [[$(snippetTitle)$]addsuffix[/prefix]!is[missing]removesuffix[/prefix]addsuffix[/suffix]!is[missing]]\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;wrap-selection\&quot;\n\tprefix={{{ [[$(snippetTitle)$]addsuffix[/prefix]get[text]] }}}\nsuffix={{{ [[$(snippetTitle)$]addsuffix[/suffix]get[text]] }}}\n/&gt;\n\n&lt;/$list&gt;\n\n&lt;$action-deletetiddler\n\t$tiddler=&lt;&lt;dropdown-state&gt;&gt;\n/&gt;\n\n&lt;$view tiddler=&lt;&lt;snippetTitle&gt;&gt; field=\&quot;caption\&quot; mode=\&quot;inline\&quot;&gt;\n\n&lt;$view tiddler=&lt;&lt;snippetTitle&gt;&gt; field=\&quot;title\&quot; mode=\&quot;inline\&quot;/&gt;\n\n&lt;/$view&gt;\n\n&lt;/$button&gt;\n\\end\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/TextEditor/Snippet]!has[draft.of]sort[caption]]\&quot; variable=\&quot;snippetTitle\&quot;&gt;\n\n&lt;&lt;toolbar-button-stamp-inner&gt;&gt;\n\n&lt;/$list&gt;\n\n----\n\n&lt;$button tag=\&quot;a\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-new-tiddler\&quot;\n\ttags=\&quot;$:/tags/TextEditor/Snippet\&quot;\n\tcaption={{$:/language/Buttons/Stamp/New/Title}}\n\ttext={{$:/language/Buttons/Stamp/New/Text}}\n/&gt;\n\n&lt;$action-deletetiddler\n\t$tiddler=&lt;&lt;dropdown-state&gt;&gt;\n/&gt;\n\n&lt;em&gt;\n\n&lt;$text text={{$:/language/Buttons/Stamp/Caption/New}}/&gt;\n\n&lt;/em&gt;\n\n&lt;/$button&gt;\n&quot;
+            &quot;text&quot;: &quot;\\define toolbar-button-stamp-inner()\n&lt;$button tag=\&quot;a\&quot;&gt;\n\n&lt;$list filter=\&quot;[[$(snippetTitle)$]addsuffix[/prefix]is[missing]removesuffix[/prefix]addsuffix[/suffix]is[missing]]\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;replace-selection\&quot;\n\ttext={{$(snippetTitle)$}}\n/&gt;\n\n&lt;/$list&gt;\n\n\n&lt;$list filter=\&quot;[[$(snippetTitle)$]addsuffix[/prefix]is[missing]removesuffix[/prefix]addsuffix[/suffix]!is[missing]] [[$(snippetTitle)$]addsuffix[/prefix]!is[missing]removesuffix[/prefix]addsuffix[/suffix]is[missing]] [[$(snippetTitle)$]addsuffix[/prefix]!is[missing]removesuffix[/prefix]addsuffix[/suffix]!is[missing]]\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-edit-text-operation\&quot;\n\t$param=\&quot;wrap-selection\&quot;\n\tprefix={{{ [[$(snippetTitle)$]addsuffix[/prefix]get[text]] }}}\nsuffix={{{ [[$(snippetTitle)$]addsuffix[/suffix]get[text]] }}}\n/&gt;\n\n&lt;/$list&gt;\n\n&lt;$action-deletetiddler\n\t$tiddler=&lt;&lt;dropdown-state&gt;&gt;\n/&gt;\n\n&lt;$transclude tiddler=&lt;&lt;snippetTitle&gt;&gt; field=\&quot;caption\&quot; mode=\&quot;inline\&quot;&gt;\n\n&lt;$view tiddler=&lt;&lt;snippetTitle&gt;&gt; field=\&quot;title\&quot; /&gt;\n\n&lt;/$transclude&gt;\n\n&lt;/$button&gt;\n\\end\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/TextEditor/Snippet]!has[draft.of]sort[caption]]\&quot; variable=\&quot;snippetTitle\&quot;&gt;\n\n&lt;&lt;toolbar-button-stamp-inner&gt;&gt;\n\n&lt;/$list&gt;\n\n----\n\n&lt;$button tag=\&quot;a\&quot;&gt;\n\n&lt;$action-sendmessage\n\t$message=\&quot;tm-new-tiddler\&quot;\n\ttags=\&quot;$:/tags/TextEditor/Snippet\&quot;\n\tcaption={{$:/language/Buttons/Stamp/New/Title}}\n\ttext={{$:/language/Buttons/Stamp/New/Text}}\n/&gt;\n\n&lt;$action-deletetiddler\n\t$tiddler=&lt;&lt;dropdown-state&gt;&gt;\n/&gt;\n\n&lt;em&gt;\n\n&lt;$text text={{$:/language/Buttons/Stamp/Caption/New}}/&gt;\n\n&lt;/em&gt;\n\n&lt;/$button&gt;\n&quot;
         },
         &quot;$:/core/ui/EditorToolbar/stamp&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/EditorToolbar/stamp&quot;,
@@ -11988,6 +11990,9 @@ The exact mechanism is as follows:
         }
     }
 }</pre>
+</div>
+<div created="20191009144004451" modified="20191011145435763" title="$:/SiteTitle" type="text/vnd.tiddlywiki">
+<pre>tiddlywiki-splitweb plugin</pre>
 </div>
 <div title="$:/status/RequireReloadDueToPluginChange">
 <pre>no</pre>
