@@ -18,15 +18,16 @@ jobs:
       if: github.event.pull_request.merged == true
       env:
           SSH_DIR: .ssh
+          GIT_SSH_COMMAND: ssh -i .ssh/id_rsa
       run: |
           git config user.email `git show -s --format='%ae' HEAD^2`
           git config user.name `git show -s --format='%an' HEAD^2`
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
-          git fetch github gh-pages
           mkdir "${SSH_DIR}"
           ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
           echo "${ACTIONS_DEPLOY_KEY}" > "${SSH_DIR}/id_rsa"
           chmod 400 "${SSH_DIR}/id_rsa"
+          git fetch github gh-pages
     - name: prepare commit message
       if: github.event.pull_request.merged == true
       run: |
