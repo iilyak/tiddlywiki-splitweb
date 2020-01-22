@@ -38,8 +38,8 @@ jobs:
       if: github.event.pull_request.merged == true
       env:
           TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki make build
-          SSH_DIR: .ssh
-          GIT_SSH_COMMAND: ssh -i .ssh/id_rsa
+          SSH_DIR: ${GITHUB_WORKSPACE}/.ssh
+          GIT_SSH_COMMAND: ssh -i ${SSH_DIR}/id_rsa
       run: |
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
           mkdir "${SSH_DIR}"
@@ -55,4 +55,4 @@ jobs:
           git add -A .
           git commit --file=../commit_message
           git push github gh-pages
-          rm -rf .ssh
+          rm -rf ${SSH_DIR}
