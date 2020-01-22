@@ -38,7 +38,6 @@ jobs:
           SSH_DIR: ${{ github.workspace }}/.ssh
           GIT_SSH_COMMAND: ssh -i ${{ github.workspace }}/.ssh/id_rsa
       run: |
-          env
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
           mkdir "${SSH_DIR}"
           ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
@@ -46,7 +45,7 @@ jobs:
           chmod 400 "${SSH_DIR}/id_rsa"
           git fetch github gh-pages
           git worktree add --track -b gh-pages site github/gh-pages
-          make build
+          make clean && make build
           cp -r output/demo/* site/
           rm -rf site/plugins/
           cd site
