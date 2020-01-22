@@ -35,7 +35,7 @@ jobs:
       if: github.event.pull_request.merged == true
       env:
           TIDDLYWIKI_PATH: ${{ github.workspace }}/tiddlywiki
-          SSH_DIR: ${{env.GITHUB_WORKSPACE}}/.ssh
+          SSH_DIR: ${{ github.workspace }}/.ssh
           GIT_SSH_COMMAND: ssh -i ${{env.SSH_DIR}}/id_rsa
       run: |
           env
