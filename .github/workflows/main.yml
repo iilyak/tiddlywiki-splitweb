@@ -29,14 +29,14 @@ jobs:
     - name: build demo
       if: github.event.pull_request.merged == true
       env:
-          TIDDLYWIKI_PATH: ${{GITHUB_WORKSPACE}}/tiddlywiki
+          TIDDLYWIKI_PATH: ${{env.GITHUB_WORKSPACE}}/tiddlywiki
       run: make build
     - name: deploy demo
       if: github.event.pull_request.merged == true
       env:
-          TIDDLYWIKI_PATH: ${{GITHUB_WORKSPACE}}/tiddlywiki
-          SSH_DIR: ${{GITHUB_WORKSPACE}}/.ssh
-          GIT_SSH_COMMAND: ssh -i ${{SSH_DIR}}/id_rsa
+          TIDDLYWIKI_PATH: ${{env.GITHUB_WORKSPACE}}/tiddlywiki
+          SSH_DIR: ${{env.GITHUB_WORKSPACE}}/.ssh
+          GIT_SSH_COMMAND: ssh -i ${{env.SSH_DIR}}/id_rsa
       run: |
           env
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
