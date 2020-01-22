@@ -16,9 +16,6 @@ jobs:
       run: git clone https://github.com/Jermolene/TiddlyWiki5 tiddlywiki
     - name: prepare environment
       if: github.event.pull_request.merged == true
-      env:
-          SSH_DIR: .ssh
-          GIT_SSH_COMMAND: ssh -i .ssh/id_rsa
       run: |
           git config user.email `git show -s --format='%ae' HEAD^2`
           git config user.name `git show -s --format='%an' HEAD^2`
@@ -32,14 +29,14 @@ jobs:
     - name: build demo
       if: github.event.pull_request.merged == true
       env:
-          TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki
+          TIDDLYWIKI_PATH: ${{GITHUB_WORKSPACE}}/tiddlywiki
       run: make build
     - name: deploy demo
       if: github.event.pull_request.merged == true
       env:
-          TIDDLYWIKI_PATH: ${GITHUB_WORKSPACE}/tiddlywiki
-          SSH_DIR: ${GITHUB_WORKSPACE}/.ssh
-          GIT_SSH_COMMAND: ssh -i ${SSH_DIR}/id_rsa
+          TIDDLYWIKI_PATH: ${{GITHUB_WORKSPACE}}/tiddlywiki
+          SSH_DIR: ${{GITHUB_WORKSPACE}}/.ssh
+          GIT_SSH_COMMAND: ssh -i ${{SSH_DIR}}/id_rsa
       run: |
           env
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
