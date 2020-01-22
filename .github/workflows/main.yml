@@ -25,7 +25,7 @@ jobs:
           git remote add github "git@github.com:${GITHUB_REPOSITORY}.git"
           mkdir "${SSH_DIR}"
           ssh-keyscan -t rsa github.com > "${SSH_DIR}/known_hosts"
-          echo "${ACTIONS_DEPLOY_KEY}" > "${SSH_DIR}/id_rsa"
+          echo "${{secrets.ACTIONS_DEPLOY_KEY}}" > "${SSH_DIR}/id_rsa"
           chmod 400 "${SSH_DIR}/id_rsa"
           git fetch github gh-pages
     - name: prepare commit message
