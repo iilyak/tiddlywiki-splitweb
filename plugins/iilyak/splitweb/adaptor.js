@@ -43,7 +43,7 @@ SplitWebAdaptor.prototype.isReady = function() {
 };
 
 SplitWebAdaptor.prototype.getHost = function() {
-	var text = this.wiki.getTiddlerText(CONFIG_HOST_TIDDLER,DEFAULT_HOST_TIDDLER),
+	var text = this.wiki.getTiddlerText(CONFIG_HOST_TIDDLER,DEFAULT_HOST_TIDDLER).trim(),
 		substitutions = [
 			{name: "protocol", value: document.location.protocol},
 			{name: "host", value: document.location.host}
@@ -52,6 +52,7 @@ SplitWebAdaptor.prototype.getHost = function() {
 		var s = substitutions[t];
 		text = $tw.utils.replaceString(text,new RegExp("\\$" + s.name + "\\$","mg"),s.value);
 	}
+	text += text.endsWith("/") ? "" : "/";
 	return text;
 };
 
